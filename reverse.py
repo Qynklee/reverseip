@@ -60,8 +60,8 @@ def reverse():
 					with open('reversed.txt', 'a+') as f:
 						f.write(line + "\n") #write output
 
-	except:
-		pass
+	except Exception as e:
+        print("error : ", str(e))
 
 t = threading.Thread(target=reverse)
 t.start()

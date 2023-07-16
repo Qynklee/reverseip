@@ -61,7 +61,7 @@ def reverse():
 						f.write(line + "\n") #write output
 
 	except Exception as e:
-        print("error : ", str(e))
+		print("error : ", str(e))
 
 t = threading.Thread(target=reverse)
 t.start()

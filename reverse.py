@@ -59,7 +59,7 @@ def reverse():
 
 			pattern = r"</th>\n<td>(.*?)</td>"
 			results = re.findall(pattern, response)
-			if(len(result)==0):
+			if(len(results)==0):
 				continue
 			else:
 				print("nov@session:~$ " + site + " - [ " + str(len(results)) + " ]")

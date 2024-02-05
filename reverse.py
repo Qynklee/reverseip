@@ -39,14 +39,14 @@ def reverse():
 	try:
 		print(banner)
 		site = input('[?] List > ')
-		line = open(site,'r').read().splitlines()
+		line = open(site,'r', encoding="utf-8", errors="ignore").read().splitlines()
 		print("")
 		for site in line:
 			if site.startswith("http://"):
 				site = site.replace("http://", "")
 			if site.startswith("https://"):
 				site = site.replace("https://", "")
-			response = s.get("https://rapiddns.io/sameip/" + site + "?full=1#result", headers=ua).content.decode("utf-8")
+			response = s.get("https://rapiddns.io/sameip/" + site + "?full=1#result", headers=ua).content.decode("utf-8", "ignore")
 			pattern = r"</th>\n<td>(.*?)</td>"
 			results = re.findall(pattern, response)
 			print("nov@session:~$ " + site + " - [ " + str(len(results)) + " ]")
@@ -57,7 +57,7 @@ def reverse():
 					line = "" + line[4:]
 				if line not in names:
 					names.append(line)
-					with open('reversed.txt', 'a+') as f:
+					with open('reversed.txt', 'a+', encoding="utf-8", errors="ignore") as f:
 						f.write(line + "\n") #write output
 
 	except Exception as e:

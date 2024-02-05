@@ -59,16 +59,19 @@ def reverse():
 
 			pattern = r"</th>\n<td>(.*?)</td>"
 			results = re.findall(pattern, response)
-			print("nov@session:~$ " + site + " - [ " + str(len(results)) + " ]")
-
-			for line in results:
-				line = line.strip()  #delete ' '
-				if line.startswith("www."):
-					line = "" + line[4:]
-				if line not in names:
-					names.append(line)
-					with open('reversed.txt', 'a+', encoding="utf-8", errors="ignore") as f:
-						f.write(line + "\n") #write output
+			if(len(result)==0):
+				continue
+			else:
+				print("nov@session:~$ " + site + " - [ " + str(len(results)) + " ]")
+				for line in results:
+					line = line.strip()  #delete ' '
+					if line.startswith("www."):
+						line = "" + line[4:]
+					if line not in names:
+						names.append(line)
+						with open('reversed.txt', 'a+', encoding="utf-8", errors="ignore") as f:
+							f.write(site + "\n")
+							f.write(line + "\n") #write output
 
 	except Exception as e:
 		print("error : ", str(e))

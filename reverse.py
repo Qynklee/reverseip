@@ -46,7 +46,17 @@ def reverse():
 				site = site.replace("http://", "")
 			if site.startswith("https://"):
 				site = site.replace("https://", "")
-			response = s.get("https://rapiddns.io/sameip/" + site + "?full=1#result", headers=ua).content.decode("utf-8", "ignore")
+
+			while(True):
+				try:
+					response = s.get("https://rapiddns.io/sameip/" + site + "?full=1#result", headers=ua).content.decode("utf-8", "ignore")
+				except Exception as e:
+					print("Connection broken, sleep in 10s")
+					time.sleep(10)
+					continue
+
+				break
+
 			pattern = r"</th>\n<td>(.*?)</td>"
 			results = re.findall(pattern, response)
 			print("nov@session:~$ " + site + " - [ " + str(len(results)) + " ]")
